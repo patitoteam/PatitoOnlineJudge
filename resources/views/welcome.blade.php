@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">hola mundo</div>
+                <div class="title">primer commit</div>
             </div>
         </div>
     </body>
