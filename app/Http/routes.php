@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
+    // look at /resources/views/welcome.blade.php
     return view('welcome');
 });
 
 Route::get('/tre', function () {
     return "dsadsadsa";
 });
+
+Route::get('/frontpage', function () {
+    return view('index');
+})
