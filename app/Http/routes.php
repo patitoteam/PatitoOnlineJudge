@@ -22,4 +22,5 @@ Route::get('/tre', function () {
 
 Route::get('/frontpage', function () {
     return view('index');
-})
+});
+Route::resource('problems', 'ProblemController');
