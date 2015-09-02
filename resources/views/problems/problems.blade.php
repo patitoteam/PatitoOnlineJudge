@@ -4,8 +4,9 @@
 <head>
     <title>Problemset</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="http://localhost/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://localhost/flat-ui/css/flat-ui.min.css" />
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/flat-ui.min.css')}}"/>
+
     <style>
         td{border:1px solid #000;}
         th{background: #99a3a3;}

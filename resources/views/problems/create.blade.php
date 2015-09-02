@@ -7,9 +7,9 @@
     <!-- Copyright (c) 2012-2015 The MathJax Consortium -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="http://localhost/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://localhost/flat-ui/css/flat-ui.min.css" />
-    <script src="http://localhost/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/flat-ui.min.css')}}"/>
+    <script src="{{asset('/js/jquery-2.1.1.min.js')}}"></script>
     <script type="text/x-mathjax-config">
 		MathJax.Hub.Config({ showProcessingMessages: false, tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] } });
 	</script>
