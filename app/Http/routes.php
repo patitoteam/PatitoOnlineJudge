@@ -12,24 +12,11 @@
 */
 
 Route::get('/', function () {
-    // look at /resources/views/welcome.blade.php
     return view('welcome');
 });
 
 Route::get('status','StatusController@index');
 Route::get('submit','SubmitController@index');
-//Route::controller('legajos','LegajosController');
-//get('/','UserController@index');
-/*Route::controller('legajos', 'LegajosController', [
-    'postBuscar' => 'legajos.buscar',
-    'getBuscar' => 'legajos',
-    
- ]);*/
-
-Route::get('/tre', function () {
-    return "dsadsadsa";
-});
-
 Route::get('/frontpage', function () {
     return view('index');
 });

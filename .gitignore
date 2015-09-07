@@ -4,4 +4,6 @@ Homestead.yaml
 .env
 *.sublime-project
 *.sublime-workspace
+/fonts
+/storage
 
