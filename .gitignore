@@ -6,4 +6,10 @@ Homestead.yaml
 *.sublime-workspace
 /fonts
 /storage
-
+composer.lock
+/config/database.php
+/public/inputfiles
+/public/outputfiles
+.idea/
+.env.*.php
+.env.php
