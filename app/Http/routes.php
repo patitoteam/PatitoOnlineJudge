@@ -19,14 +19,15 @@ Route::get('status/status','StatusController@index');
 Route::post('status/status','StatusController@postindex');
 
 Route::resource('submit/submit','SubmitController');
-
 Route::get('/tre', function () {
     return "dsadsadsa";
 });
-
 Route::get('status','StatusController@index');
 Route::get('submit','SubmitController@index');
 Route::get('/frontpage', function () {
     return view('index');
 });
 Route::resource('problems', 'ProblemController');
+Route::resource('problems/tag','TagController',
+    ['only' => ['index','show']]);
+

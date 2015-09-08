@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use DB;
-use Illuminate\Http\Request;
 use App\problem;
+use App\problemhastag;
+use App\tag;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -15,11 +18,15 @@ class ProblemController extends Controller
      *
      * @return Response
      */
+
+
     public function index()
     {
         $problems = DB::table('problems')->paginate(9);
+        $hasTags=problemhastag::all();
+        $tag=tag::all();
 
-        return view('problems.problems', ['problems' => $problems]);
+        return view('problems.index', ['problems' => $problems,'hastags'=>$hasTags, 'tag'=>$tag]);
     }
 
     /**
@@ -27,9 +34,11 @@ class ProblemController extends Controller
      *
      * @return Response
      */
+
     public function create()
     {
-        return view('problems/create');
+        $tag=tag::all();
+        return view('problems/create')->withtags($tag);
     }
 
     /**
@@ -40,6 +49,11 @@ class ProblemController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
         $inputFiles = 'inputFiles/';
         $inputFilesFolder = public_path() . '/' . $inputFiles;
         $outputFiles = 'outputFiles/';
@@ -53,6 +67,9 @@ class ProblemController extends Controller
         $filenameOut=time().'.'.$fileoutput->getClientOriginalExtension();
         $fileoutput->move($outputFilesFolder, $filenameOut);
 
+
+
+
         $problem->name=$request->input('title');
         $problem->description=$request->input('description');
         $problem->input=$request->input('input');
@@ -60,7 +77,11 @@ class ProblemController extends Controller
         $problem->sample_input=$request->input('inputsample');
         $problem->sample_output=$request->input('outputsample');
         $problem->save();
-
+        foreach(explode(',', $request->input('tags2')) as $tag_id){
+            DB::table('problemhastags')->insert(
+                ['problem_id' => $problem->id, 'tag_id' => $tag_id]
+            );
+        }
         return redirect()->action('ProblemController@index');;
     }
 
@@ -85,7 +106,8 @@ class ProblemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tags=tag::all();
+        return view('problems.edit')->withProblem(Problem::findOrFail($id))->withtags($tags);
     }
 
     /**
@@ -97,7 +119,15 @@ class ProblemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $problem = Problem::findOrFail($id);
+        $problem->name=$request->name;
+        $problem->save();
+        foreach(explode(',', $request->input('tags2')) as $tag_id){
+            DB::table('problemhastags')->insert(
+                ['problem_id' => $problem->id, 'tag_id' => $tag_id]
+            );
+        }
+        return view('problems.show',['problem' => Problem::findOrFail($id)]);
     }
 
     /**
@@ -108,6 +138,9 @@ class ProblemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $problem= Problem::findOrFail($id);
+        $problem->delete();
+        return redirect()->route('problems.index');
     }
 }
+
