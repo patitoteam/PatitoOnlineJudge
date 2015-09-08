@@ -14,7 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/tre', function () {
-    return "dsadsadsa";
-});
+Route::get('status','StatusController@index');
+Route::get('submit','SubmitController@index');
+//Route::controller('legajos','LegajosController');
+//get('/','UserController@index');
+/*Route::controller('legajos', 'LegajosController', [
+    'postBuscar' => 'legajos.buscar',
+    'getBuscar' => 'legajos',
+    
+ ]);*/
