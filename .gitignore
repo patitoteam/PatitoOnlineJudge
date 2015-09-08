@@ -13,3 +13,4 @@ composer.lock
 .idea/
 .env.*.php
 .env.php
+/public/js/MathJax/fonts
