@@ -28,6 +28,7 @@ class CreateSolutionTable extends Migration
             $table->integer("code_lenght")->nullable();
             $table->date("judgetime")->nullable();
             $table->decimal("pass_rate")->nullable();
+            $table->string('source_code')->nullable();
             $table->timestamps();
         });
     }

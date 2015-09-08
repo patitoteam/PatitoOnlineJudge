@@ -16,19 +16,10 @@ class UserController extends Controller
 
     public function index()
     {
-       // return "Bienbenido a nuestro primer controladator";   
-/*        $nombre="Brayan Huber Gonzales Velasquez";
-        return view('test.index')->with('nombre',$nombre);*/
-        $users=User::all();
-        return view('user.index')->with('users',$users);
+
     }
     public function getusuarios(){
-       $users = User::all();
-       $names = '';
-       foreach($users as $item){
-          $names .= "{$item->name} <br />";
-       }
-       return $names;
+       
     }
    
     /**
@@ -38,9 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-          $users = new User;
-          return view('user.save')->with('users',$users);
+        
     }
 
     /**
@@ -51,15 +40,7 @@ class UserController extends Controller
      */
     public function store()
     {
-        //
-        $user = new User();
-        $user->real_name = Input::get('name');
-        $user->email = Input::get('email');
-        $user->password = Hash::make(Input::get('password'));
-        $user->level = Input::get('level');
-        $user->active = true;
-        $user->save();
-        return Redirect('user')->with('notice', 'El usuario ha sido creado correctamente.');
+       
     }
 
     /**
@@ -82,8 +63,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-         $user = User::find($id);
-         return view('user.save')->with('user', $user);
+        
     }
 
     /**
@@ -95,13 +75,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-         $user = User::find($id);
-         $user->real_name = Input::get('real_name');
-         $user->email = Input::get('email');
-         $user->level = Input::get('level');
-         $user->save();
-         return Redirect('user')->with('notice', 'El usuario ha sido modificado correctamente.');
+        
 
     }
 

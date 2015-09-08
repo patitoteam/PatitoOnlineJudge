@@ -16,15 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('status','StatusController@index');
-Route::get('submit','SubmitController@index');
-//Route::controller('legajos','LegajosController');
-//get('/','UserController@index');
-/*Route::controller('legajos', 'LegajosController', [
-    'postBuscar' => 'legajos.buscar',
-    'getBuscar' => 'legajos',
-    
- ]);*/
+Route::get('status/status','StatusController@index');
+Route::post('status/status','StatusController@postindex');
+
+Route::resource('submit/submit','SubmitController');
 
 Route::get('/tre', function () {
     return "dsadsadsa";

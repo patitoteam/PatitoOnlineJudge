@@ -8,6 +8,7 @@
 <body>
 <div class="container well">
     <h1>{{$problem->id}}: {{$problem->name}}</h1>
+    <h3>{!! link_to('submit/submit/'.$problem->id,'enviar') !!}</h3>
     <h3>Descripción</h3>
     <p>{{$problem->description}}</p>
     <h3>Entrada</h3>
