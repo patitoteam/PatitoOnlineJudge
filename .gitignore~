@@ -1,0 +1,6 @@
+/vendor
+Homestead.yaml
+*.sublime-project
+*.sublime-workspace
+
+

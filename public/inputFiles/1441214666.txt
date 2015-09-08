@@ -1,0 +1,267 @@
+USAR CRACK
+----------
+
+1.- Instalar el programa y dejar la ventana de instalación abierta, aun no presionar el botón "Finish", espere....
+
+2.- Copiar el contenido de la carpeta "Crack" en "C:\Program Files (x86)\Internet Download Manager", reemplazar.
+    Ejecutar el fichero "registrar.reg" (esta en la carpeta Crack).
+
+3.- Presionar el botón "Finish" y el programa se inicia ya registrado.
+
+
+Listo !!!!
+
+
+USAR PATCH
+----------
+
+1.- Instale el Programa, no lo inicie. Cerrar el icono que esta en la barra de tareas (al lado del reloj de windows).
+
+2.- Descomprimir "Internet.Download.Manager.v6.x.x.Update.8.patch-REiS.rar".
+    Iniciar el patch "internet.download.manager.6.x.x.update.8-patch.exe" (como admin en vista/7/8), presionar "PATCH",
+    Y Colocar tus datos en los casilleros que te presenta el patch.
+    Cerrar patch.
+
+3.- Iniciar el programa, usar.
+
+PD. Puede usar "disable_activation.cmd" (clic derecho-> Ejecutar como admin), para evitar el bloqueo de tu # de serie.
+    Al darle a actualizar el programa, te desactivara los enlaces que bloqueaste con el fichero "disable_activation.cmd", por lo que no recomienda actualizar desde el programa.
+    Para actualizar se debe bajar el nuevo instalador.
+
+    En 62310.7Z tienes otros Patchs modificados para esta nueva versión.
+
+
+Listo !!!!
+
+
+PD. Fake_IDMGrHlp, copiar en "C:\Program Files (x86)\Internet Download Manager" (sólo si te sale que tienes serial falso).
+
+    Ejecutar "disable_activation.cmd" (clic derecho-> Ejecutar como admin), para evitar el bloqueo de tu # de serie.
+
+    Si tienes # de serie bloqueados y quieres borrarlos, pegar lo siguiente en el ejecutar de Windows (Win+R), uno a uno:
+
+reg delete HKCU\Software\DownloadManager /v CheckUpdtVM /f
+reg delete HKCU\Software\DownloadManager /v scansk /f
+
+Nota. Analisis en VirusTotal: https://www.virustotal.com/en/file/60ea05d3cf110a89d14b00c77536804c0be17f57713508d7f49abfb33f2d703c/analysis/
+				https://www.virustotal.com/en/file/36add122dc75f9961e32f82f456e776cf6d1069c2378837239f373ca06448f8a/analysis/1428222225/
+					https://www.virustotal.com/en/file/73e39cae5006a80aaa4f09bb991a0b5c643c5ad08b5f2bd998cd1f7f3baf6ad6/analysis/1428222298/
+
+      Usarlo bajo su responsabilidad.
+
+=================================================
+Visita: www.intercambiosvirtuales.org
+Dudas y Sugerencias: www.intercambiosos.org
+=================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================
+Visita: www.intercambiosvirtuales.org
+Dudas y Sugerencias: www.intercambiosos.org
+=================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================
+Visita: www.intercambiosvirtuales.org
+Dudas y Sugerencias: www.intercambiosos.org
+=================================================
