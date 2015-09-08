@@ -5,7 +5,7 @@ APP_KEY=UJS8UecurgWnZzuP4UhSFk0pXjLGMmMo
 DB_HOST=localhost
 DB_DATABASE=poj
 DB_USERNAME=root
-DB_PASSWORD=6156721
+DB_PASSWORD=sam no veras mi contraseña
 
 CACHE_DRIVER=file
 SESSION_DRIVER=file

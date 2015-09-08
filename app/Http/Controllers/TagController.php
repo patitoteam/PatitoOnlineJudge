@@ -3,25 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use DB;
+use App\tag;
+use App\problemhastag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-class UserController extends Controller
+
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-
     public function index()
     {
+        $tag=Tag::all();
 
+        return view('tags.index')->withTag($tag);
     }
-    public function getusuarios(){
-       
-    }
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -38,9 +39,9 @@ class UserController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-       
+        //
     }
 
     /**
@@ -51,7 +52,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $problems=DB::table('problemhastags')
+            ->join('tags','tags.id','=','problemhastags.tag_id')
+            ->join('problems','problems.id','=','problemhastags.problem_id')
+            ->where('tags.name','=',$id)
+            ->select('problems.name as name','problems.id as id', 'tags.name as tag')
+            ->paginate(3);
+        $hastags=problemhastag::all();
+        $tag =tag::all();
+        //return view('tags.show')->withProblems($problems)->withTag($id);
+        return view('problems.index')->withProblems($problems)->withtaganame($id)->withhastags($hastags)->withtag($tag);
     }
 
     /**
@@ -62,8 +72,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
-        
+
     }
 
     /**
@@ -75,8 +84,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-
+        //
     }
 
     /**
