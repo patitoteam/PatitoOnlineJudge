@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    // look at /resources/views/welcome.blade.php
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('status/status','StatusController@index');
 Route::post('status/status','StatusController@postindex');
 
@@ -25,6 +25,10 @@ Route::get('/tre', function () {
     return "dsadsadsa";
 });
 
+=======
+Route::get('status','StatusController@index');
+Route::get('submit','SubmitController@index');
+>>>>>>> 979b3005fd170a2d9f01ada0ed0a3bb0dbec2b79
 Route::get('/frontpage', function () {
     return view('index');
 });
