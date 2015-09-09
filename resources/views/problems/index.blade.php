@@ -57,7 +57,7 @@
                     <a  href="{{ route('problems.edit', $problem->id) }}" title="edit problem {{$problem->id}}"> <i class="fa fa-edit fa-lg"></i></a>
                 </td>
                 <td style="text-align: center">
-                    {!! link_to('submit/submit/'.$problem->id,'enviar') !!}
+                    {!! link_to('submit/'.$problem->id,'enviar') !!}
 
 
                 </td>

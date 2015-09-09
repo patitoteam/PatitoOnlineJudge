@@ -18,12 +18,14 @@ Route::get('/', function () {
 Route::get('status/status','StatusController@index');
 Route::post('status/status','StatusController@postindex');
 
-Route::resource('submit/submit','SubmitController');
+Route::get('submit/{id}','SubmitController@show');
+Route::post('submit/{id}','SubmitController@save');
+
+
 Route::get('/tre', function () {
     return "dsadsadsa";
 });
 Route::get('status','StatusController@index');
-Route::get('submit','SubmitController@index');
 Route::get('/frontpage', function () {
     return view('index');
 });
