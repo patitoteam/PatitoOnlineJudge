@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRunTable extends Migration
+class CreateWaInfoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateRunTable extends Migration
      */
     public function up()
     {
-        Schema::create('run', function (Blueprint $table) {
-            $table->increments('run_id');
-            $table->integer('solution_id')->nullable;
-            $table->integer('sourcecode_id')->nullable();
-            $table->integer('problem_id')->nullable();
+        Schema::create('wa_info', function (Blueprint $table) {
+            $table->increments('id');
             $table->timestamps();
-            
         });
     }
 
@@ -26,9 +22,9 @@ class CreateRunTable extends Migration
      * Reverse the migrations.
      *
      * @return void
-     */ 
+     */
     public function down()
     {
-        Schema::drop('run');
+        Schema::drop('wa_info');
     }
 }

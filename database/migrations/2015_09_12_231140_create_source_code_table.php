@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRunTable extends Migration
+class CreateSourceCodeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateRunTable extends Migration
      */
     public function up()
     {
-        Schema::create('run', function (Blueprint $table) {
-            $table->increments('run_id');
-            $table->integer('solution_id')->nullable;
+        Schema::create('source_code', function (Blueprint $table) {
+            $table->integer('solution_id');
             $table->integer('sourcecode_id')->nullable();
-            $table->integer('problem_id')->nullable();
+            $table->string('source')->nullable();
             $table->timestamps();
-            
         });
     }
 
@@ -26,9 +24,9 @@ class CreateRunTable extends Migration
      * Reverse the migrations.
      *
      * @return void
-     */ 
+     */
     public function down()
     {
-        Schema::drop('run');
+        Schema::drop('source_code');
     }
 }
