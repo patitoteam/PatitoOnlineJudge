@@ -13,7 +13,8 @@ class CreateWaInfoTable extends Migration
     public function up()
     {
         Schema::create('wa_info', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('solution_id');
+            $table->string('error')->nullable();
             $table->timestamps();
         });
     }
