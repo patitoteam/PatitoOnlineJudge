@@ -35,7 +35,7 @@
       <input name="_method" type="hidden" value="post">
       <div id="problem">{{$id}}</div> <br>
       Language  
-      <select id="len" name='len'>
+      <select id="len" name='leng'>
         <option value="0">C</option>
         <option value="1">C++</option>
         <option value="2">c++11</option>

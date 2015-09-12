@@ -31,7 +31,7 @@ class SubmitController extends Controller
         $status->user_id='aun no';
         $status->time='100';
         $status->memory='100';
-        $status->language=$request->input('len');
+        $status->language=$request->input('leng');
         $status->source_code=$request->input('editor');
         $status->save();
 
