@@ -25,20 +25,20 @@ class SubmitController extends Controller
         return view('status.status');
 
     }
-    public function store(Request $request)
-    {
+    public function save(Request $request,$id){
         $status= new Status;
-        $status->problem_id=$request->input('problem');
+        $status->problem_id=$id;
         $status->user_id='aun no';
         $status->time='100';
         $status->memory='100';
         $status->language=$request->input('len');
         $status->source_code=$request->input('editor');
         $status->save();
-        $status1=Status::orderBy('solution_id','desc')->first();
+
         $compile=new Compileinfo;
-        $compile->solution_id=$status1->solution_id;
+        $compile->solution_id=$id;
         $compile->save();
+        
         return redirect('status/status');
     }
 

@@ -1,9 +1,18 @@
+# ===================================
+# Default Laravel's gitignore config
+# ===================================
 /vendor
 /node_modules
 Homestead.yaml
 .env
+
+# ==========================
+# Our own .gitignore config
+# ==========================
+.idea/
 *.sublime-project
 *.sublime-workspace
-/fonts
-/storage
-
+/public/inputfiles
+/public/outputfiles
+/public/js/MathJax/fonts
+*~
