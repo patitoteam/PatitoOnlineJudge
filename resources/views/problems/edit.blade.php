@@ -1,10 +1,8 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Dynamic Preview of Textarea with MathJax Content</title>
-    <!-- Copyright (c) 2012-2015 The MathJax Consortium -->
+    <title>Edit problem {{$problem->id}}</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}"/>
@@ -273,7 +271,7 @@
 </head>
 
 <body>
-
+<h1>Editando Problema {{$problem->id}}:{{$problem->name}}</h1>
 @if($errors->any())
     <div class="alert alert-danger">
         @foreach($errors->all() as $error)
@@ -281,16 +279,21 @@
         @endforeach
     </div>
 @endif
-@if(Session::has('flash_message'))
-    <div class="alert alert-success">
-        {{ Session::get('flash_message') }}
-    </div>
-@endif
 
 {!! Form::model($problem, [
 'method' => 'PATCH',
 'route' => ['problems.update', $problem->id]
 ]) !!}
+{!!Form::label('time_limit','Tiempo límite')!!}
+<div class="input-group col-sm-3">
+    {!!Form::number('time_limit',null,array('id'=>'time','class'=>'form-control','placeholder'=>'Tiempo limite' ))!!}
+    <span class="input-group-addon">seg</span>
+</div>
+{!!Form::label('memory_limit','Memoria')!!}
+<div class="input-group col-sm-3">
+    {!!Form::number('memory_limit',null,['id'=>'memory','class'=>'form-control','placeholder'=>'Memoria'])!!}
+    <span class="input-group-addon">Mb</span>
+</div>
     {!! Form::label('name', 'Name:', ['class' => 'control-label']) !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
     {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
@@ -307,15 +310,16 @@
     {!!Form::file('inputfile', array('id'=>'inputfile')) !!}
     <label for="outputfile">Archivo De Salida:</label>
     {!!Form::file('outputfile', array('id'=>'outputfile')) !!}
-
     <input type="hidden" id="tags2" name="tags2"/>
-<select name="tags" id="tags1" data-toggle="select" multiple class="form-control multiselect multiselect-default mrs mbm">
-    @foreach($tags as $tag)
-        <option value="{{$tag->id}}">{{$tag->name}}</option>
-    @endforeach
-</select>
+    <select name="tags" id="tags1" data-toggle="select" multiple class="form-control multiselect multiselect-default mrs mbm">
+        @foreach($tags as $t)
+            <option value="{{$t->id}}">{{$t->name}}</option>
+
+        @endforeach
+    </select>
     {!! Form::submit('Update Problem', array('class' => 'btn btn-primary')) !!}
 {!! Form:: close() !!}
+
 <script>
     $(function(){
         $('#tags1').on('change', function(){

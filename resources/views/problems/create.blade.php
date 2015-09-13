@@ -10,8 +10,6 @@
     <script src="{{asset('/js/jquery-2.1.1.min.js')}}"></script>
     <script src="{{asset('/js/flat-ui.min.js')}}"></script>
     <script>
-
-
     </script>
     <script type="text/x-mathjax-config">
 		MathJax.Hub.Config({ showProcessingMessages: false, tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] } });
@@ -36,61 +34,53 @@
         </div>
     @endif
     <script>
-
     </script>
-
     <div class="col-md-6">
         {!! Form:: open(array('action' => 'ProblemController@store', 'files' => true)) !!}
-        <label for="title">Title:</label>
-        <input name="title" type="text" id="title" class="form-control">
-        <label for="description">Descripción:</label>
-
-        <textarea name="description" class="form-control" id="MathInput" onkeyup="Preview.Update()"></textarea>
-        <label for="input">Input:</label>
-        <textarea name="input" class="form-control" id="MathInput1" onkeyup="Preview1.Update()"></textarea>
-        <label for="output">Output:</label>
-        <textarea name="output" class="form-control" id="MathInput2" onkeyup="Preview2.Update()"></textarea>
-        <label for="MathInput3">Ejemplo de Entrada:</label>
-        {!!Form::textarea('inputsample', '', array('id'=>'MathInput3','class'=>'form-control'))!!}
-        <label for="MathInput4">Ejemplo de Salida:</label>
-        {!!Form::textarea('outputsample', '', array('id'=>'MathInput4','class'=>'form-control'))!!}
-
-        <label for="inputfile">Archivo De entrada:</label>
-        {!!Form::file('inputfile', array('id'=>'inputfile')) !!}
-        <label for="outputfile">Archivo De Salida:</label>
-        {!!Form::file('outputfile', array('id'=>'outputfile')) !!}
-
-        <input type="hidden" id="tags2" name="tags2"/>
-        <select name="tags" id="tags1" data-toggle="select" multiple class="form-control multiselect multiselect-default mrs mbm">
+            {!!Form::label('time_limit','Tiempo límite')!!}
+            <div class="input-group col-sm-3">
+                {!!Form::number('time_limit','1',array('id'=>'time_limit','class'=>'form-control','placeholder'=>'Tiempo limite' ))!!}
+                <span class="input-group-addon">seg</span>
+            </div>
+            {!!Form::label('memory_limit','Memoria')!!}
+            <div class="input-group col-sm-3">
+                {!!Form::number('memory_limit','128',array('id'=>'memory','class'=>'form-control','placeholder'=>'Memoria'))!!}
+                <span class="input-group-addon">Mb</span>
+            </div>
+            <label>Etiquetas</label>
+            <br>
+            <input type="hidden" id="tags2" name="tags2"/>
+            <select name="tags" id="tags1" data-toggle="select" multiple placeholder="Seleccione las etiquetas" class="form-control multiselect multiselect-default mrs mbm">
             @foreach($tags as $tag)
                 <option value="{{$tag->id}}">{{$tag->name}}</option>
             @endforeach
-        </select>
+            </select>
+        <br>
+
+        {!!Form::label('name', 'Nombre')!!}
+        {!!Form::text('name', '',array('id'=>'name','class'=>'form-control','placeholder'=>'Nombre del Problema'))!!}
+
+        {!!Form::label('description', 'Descripción')!!}
+        {!!Form::textarea('description','',array('id'=>'MathInput','class'=>'form-control', 'onkeyup'=>'Preview.Update()','placeholder'=>'Descripción del problema'))!!}
+
+        {!!Form::label('input', 'Entrada')!!}
+        {!!Form::textarea('input','',array('id'=>'MathInput1','class'=>'form-control', 'onkeyup'=>'Preview1.Update()','placeholder'=>'Entrada'))!!}
+        {!!Form::label('output', 'Salida')!!}
+        {!!Form::textarea('output','',array('id'=>'MathInput2','class'=>'form-control', 'onkeyup'=>'Preview2.Update()','placeholder'=>'Salida'))!!}
+
+        {!!Form::label('sampleIn', 'Ejemplo de Entrada')!!}
+        {!!Form::textarea('sampleIn', '', array('id'=>'sampleIn','class'=>'form-control','placeholder'=>'Ejemplo de Enrada'))!!}
+        {!!Form::label('sampleOut', 'Ejemplo de Salida')!!}
+        {!!Form::textarea('sampleOut', '', array('id'=>'sampleOut','class'=>'form-control','placeholder'=>'Ejemplo de Salida'))!!}
+
+        {!!Form::label('testIn', 'Test In')!!}
+        {!!Form::file('testIn', array('id'=>'testIn')) !!}
+        {!!Form::label('testOut', 'Test Out')!!}
+        {!!Form::file('testOut', array('id'=>'testOut')) !!}
 
 
         {!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}
         {!! Form:: close() !!}
-
-
-        <!--<form action="/problems/guardar" class="form form-horizontal">
-            <label for="title">Title:</label>
-            <input type="text" id="title" class="form-control">
-            <label for="description">Descripción:</label>
-            <textarea class="form-control" id="MathInput" onkeyup="Preview.Update()"></textarea>
-            <label for="input">Input:</label>
-    <textarea class="form-control" id="MathInput1" onkeyup="Preview1.Update()"></textarea>
-            <label for="output">Output:</label>
-            <textarea class="form-control" id="MathInput2" onkeyup="Preview2.Update()"></textarea>
-            <label for="output">Ejmplo de Entrada:</label>
-            <textarea class="form-control" id="MathInput3"></textarea>
-            <label for="output">Ejemplo de salida:</label>
-            <textarea class="form-control" id="MathInput4"></textarea>
-            <label for="">Archivo De entrada:</label>
-            <input type="file" class="" name="" value="" placeholder="">
-            <label for="">Archivo De Salida:</label>
-            <input type="file" class="" name="" value="" placeholder="">
-            <button type="submit">Enviar</button>
-        </form>-->
     </div>
     <div class="col-md-6">
         <h2>Preview</h2>
@@ -106,11 +96,9 @@
         <div id="MathPreview2"></div>
         <div id="MathBuffer2" style="visibility:hidden; position:absolute; top:0; left: 0"></div>
         <h4>Ejemplo de Entrada</h4>
-        <pre id="MathPreview3"></pre>
+        <pre id="sampleInPreview"></pre>
         <h4>Ejemplo de Salida</h4>
-        <pre id="MathPreview4"></pre>
-
-
+        <pre id="sampleOutPreview"></pre>
     </div>
 </div>
 <br/>
@@ -129,24 +117,26 @@
         if ($('[data-toggle="select"]').length) {
             $('[data-toggle="select"]').select2();
         }
-        $('#title').keyup(function () {
+        // Focus state for append/prepend inputs
+        $('.input-group').on('focus', '.form-control', function () {
+            $(this).closest('.input-group, .form-group').addClass('focus');
+        }).on('blur', '.form-control', function () {
+            $(this).closest('.input-group, .form-group').removeClass('focus');
+        });
+        $('#name').keyup(function () {
             $('#previewtitle').text($(this).val());
         });
-        $('#MathInput3').keyup(function () {
-            $('#MathPreview3').text($(this).val());
+        $('#sampleIn').keyup(function () {
+            $('#sampleInPreview').text($(this).val());
         });
-        $('#MathInput4').keyup(function () {
-            $('#MathPreview4').text($(this).val());
+        $('#sampleOut').keyup(function () {
+            $('#sampleOutPreview').text($(this).val());
         });
         Preview.Init();
         Preview1.Init();
         Preview2.Init();
     });
-
 </script>
-
-
 </body>
-
 </html>
 

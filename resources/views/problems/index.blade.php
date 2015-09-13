@@ -55,6 +55,11 @@
                         @endforeach
                     </small>
                     <a  href="{{ route('problems.edit', $problem->id) }}" title="edit problem {{$problem->id}}"> <i class="fa fa-edit fa-lg"></i></a>
+                    {!! Form::open(['method' => 'DELETE','route' => ['problems.destroy', $problem->id]]) !!}
+
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+
+                    {!! Form::close() !!}
                 </td>
                 <td style="text-align: center">
                     {!! link_to('submit/'.$problem->id,'enviar') !!}

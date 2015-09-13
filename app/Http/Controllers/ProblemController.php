@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use DB;
+use File;
 use App\problem;
 use App\problemhastag;
 use App\tag;
@@ -50,33 +51,55 @@ class ProblemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required'
+            'time_limit'=>'required',
+            'memory_limit'=>'required',
+            'name' => 'required',
+            'description' => 'required',
+            'input' => 'required',
+            'output' => 'required',
+            'sampleIn' => 'required',
+            'sampleOut' => 'required',
+            'tags'=>'required',
+            'testIn'=>'required',
+            'testOut'=>'required'
         ]);
-
-        $inputFiles = 'inputFiles/';
-        $inputFilesFolder = public_path() . '/' . $inputFiles;
-        $outputFiles = 'outputFiles/';
-        $outputFilesFolder = public_path() . '/' . $outputFiles;
         $problem=new Problem();
-        $fileinput=$request->file('inputfile');
-        $filenameInput=time().'.'.$fileinput->getClientOriginalExtension();
-        $fileinput->move($inputFilesFolder, $filenameInput);
-
-        $fileoutput=$request->file('outputfile');
-        $filenameOut=time().'.'.$fileoutput->getClientOriginalExtension();
-        $fileoutput->move($outputFilesFolder, $filenameOut);
-
-
-
-
-        $problem->name=$request->input('title');
+        $problem->name=$request->input('name');
         $problem->description=$request->input('description');
         $problem->input=$request->input('input');
         $problem->output=$request->input('output');
-        $problem->sample_input=$request->input('inputsample');
-        $problem->sample_output=$request->input('outputsample');
+        $problem->sample_input=$request->input('sampleIn');
+        $problem->sample_output=$request->input('sampleOut');
+        $problem->time_limit=$request->input('time_limit');
+        $problem->memory_limit=$request->input('memory_limit');
         $problem->save();
+        $problemFolder=public_path().'/'.$problem->id;
+        File::makeDirectory($problemFolder);
+        File::put($problemFolder.'/sample.in',$problem->sample_input);
+        File::put($problemFolder.'/sample.out',$problem->sample_output);
+
+        $testIn=$request->file('testIn');
+        $testIn->move($problemFolder,'test.in');
+        $testOut=$request->file('testOut');
+        $testOut->move($problemFolder,'test.out');
+
+        /*
+        $inputFiles = $problem->id;
+        $inputFilesFolder = public_path() . '/' . $inputFiles;
+        $outputFiles = $problem->id;
+        $outputFilesFolder = public_path() . '/' . $outputFiles;
+
+        $fileinput=$request->file('inputfile');
+        $filenameInput='sample.in';
+        $fileinput->move($inputFilesFolder, $filenameInput);
+        File::put($inputFilesFolder.'/samplei.in','John DoeIN');
+        $fileoutput=$request->file('outputfile');
+        $filenameOut=time().'.'.$fileoutput->getClientOriginalExtension();
+        $filenameOut='test.in';
+        $fileoutput->move($outputFilesFolder, $filenameOut);
+        File::put($outputFilesFolder.'/sampleo.out','John DoeOut');
+        */
+
         foreach(explode(',', $request->input('tags2')) as $tag_id){
             DB::table('problemhastags')->insert(
                 ['problem_id' => $problem->id, 'tag_id' => $tag_id]
@@ -95,6 +118,7 @@ class ProblemController extends Controller
     {
         return view('problems.show', ['problem' => Problem::findOrFail($id)]);
         //$problem = $this->problem->whereId($id)->first();
+
         //   return View::make('problems.show', ['problem' => $problem]);
     }
 
@@ -107,7 +131,9 @@ class ProblemController extends Controller
     public function edit($id)
     {
         $tags=tag::all();
-        return view('problems.edit')->withProblem(Problem::findOrFail($id))->withtags($tags);
+        $hasTags=problemhastag::all();
+
+        return view('problems.edit')->withProblem(Problem::findOrFail($id))->withtags($tags)->withhastags($hasTags);
     }
 
     /**

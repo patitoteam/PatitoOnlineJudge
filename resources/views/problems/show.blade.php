@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>{{$problem->id}} :: {{$problem->name}}</title>
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}"/>
+    <script type="text/javascript" src="{{asset('/js/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML')}}"></script>
+    <script type="text/x-mathjax-config">
+		MathJax.Hub.Config({ showProcessingMessages: false, tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] } });
+	</script>
 </head>
 <body>
 <div class="container well">
@@ -21,14 +25,7 @@
     <pre>{{$problem->sample_input}}</pre>
     <h3>Ejemplo de Salida</h3>
     <pre>{{$problem->sample_output}}</pre>
-    <div class="col-md-6 text-right">
-        {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['problems.destroy', $problem->id]
-        ]) !!}
-        {!! Form::submit('Eliminar Problema?', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
-    </div>
+
 </div>
 </body>
 </html>
