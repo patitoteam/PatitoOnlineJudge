@@ -55,11 +55,22 @@
                 <td style="text-aling: center;"> {{ $item->memory}}</td>
                 <td style="text-aling: center;"> {{ $item->time}}</td>
                 <td style="text-aling: center;"> 
+               @if($item->language=='0')
 
-                {{ $item->language
-
-                }}
-
+                <p>c</p>
+                @else
+                      @if($item->language=='1')
+                        <p>c++</p>
+                      @else
+                          @if($item->language=='2')
+                             <p>c++11</p>
+                           @else
+                              @if($item->language=='3')
+                                    <p>java</p>
+                              @endif
+                           @endif
+                      @endif                
+                @endif
                 </td>
                 <td style="text-aling: center;"> {{ $item->code_lenght}}</td>
                 <td style="text-aling: center;"> {{ $item->in_date}}</td>
