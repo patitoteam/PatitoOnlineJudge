@@ -17,6 +17,7 @@ class CreateRunTable extends Migration
             $table->integer('solution_id')->nullable;
             $table->integer('sourcecode_id')->nullable();
             $table->integer('problem_id')->nullable();
+            $table->integer('language')->nullable();
             $table->timestamps();
             
         });

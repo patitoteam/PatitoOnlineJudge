@@ -44,6 +44,7 @@ class SubmitController extends Controller
         $run=new Run;
         $run->solution_id=$status->solution_id;
         $run->problem_id=$id;
+        $run->language=$request->input('leng');
         $run->save();
         return redirect('status/status');
     }
