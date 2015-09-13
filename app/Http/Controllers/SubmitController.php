@@ -29,9 +29,9 @@ class SubmitController extends Controller
     public function save(Request $request,$id){
         $status= new Status;
         $status->problem_id=$id;
-        $status->user_id='aun no';
-        $status->time='100';
-        $status->memory='100';
+        $status->user_id='aun no hay usuario XD';
+        $status->time='0';
+        $status->memory='0';
         $leng=$request->input('leng');
         $status->language=$leng;
         //$status->source_code=
