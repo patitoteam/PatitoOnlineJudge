@@ -15,7 +15,7 @@ class CreateSolutionTable extends Migration
         Schema::create('solution', function (Blueprint $table) {
             $table->increments('solution_id')->nullable();
             $table->integer("problem_id")->nullable();
-            $table->string("user_id")->nullable();
+            $table->integer("user_id")->nullable();
             $table->integer("time")->nullable();
             $table->integer("memory")->nullable();
             $table->date("in_date")->nullable();

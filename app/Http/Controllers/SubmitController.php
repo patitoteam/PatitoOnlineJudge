@@ -29,7 +29,7 @@ class SubmitController extends Controller
     public function save(Request $request,$id){
         $status= new Status;
         $status->problem_id=$id;
-        $status->user_id='aun no hay usuario XD';
+        $status->user_id='0';
         $status->time='0';
         $status->memory='0';
         $leng=$request->input('leng');
