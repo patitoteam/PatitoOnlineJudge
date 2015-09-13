@@ -54,7 +54,13 @@
                 <td style="text-aling: center;"> <div id="responce"></div></td>
                 <td style="text-aling: center;"> {{ $item->memory}}</td>
                 <td style="text-aling: center;"> {{ $item->time}}</td>
-                <td style="text-aling: center;"> {{ $item->language}}</td>
+                <td style="text-aling: center;"> 
+
+                {{ $item->language
+
+                }}
+
+                </td>
                 <td style="text-aling: center;"> {{ $item->code_lenght}}</td>
                 <td style="text-aling: center;"> {{ $item->in_date}}</td>
                 

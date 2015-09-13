@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Compileinfo;
 use App\Status;
-
+use App\Run;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -34,11 +34,16 @@ class SubmitController extends Controller
         $status->language=$request->input('leng');
         $status->source_code=$request->input('editor');
         $status->save();
+        
 
         $compile=new Compileinfo;
         $compile->solution_id=$id;
         $compile->save();
         
+        $run=new Run;
+        $run->solution_id=$id;
+        $run->problem_id=$id;
+        $run->save();
         return redirect('status/status');
     }
 
