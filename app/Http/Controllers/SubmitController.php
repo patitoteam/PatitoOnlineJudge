@@ -32,7 +32,8 @@ class SubmitController extends Controller
         $status->user_id='aun no';
         $status->time='100';
         $status->memory='100';
-        $status->language=$request->input('leng');
+        $leng=$request->input('leng');
+        $status->language=$leng;
         //$status->source_code=
         $status->save();
         
@@ -50,7 +51,7 @@ class SubmitController extends Controller
         $run=new Run;
         $run->solution_id=$status->solution_id;
         $run->problem_id=$id;
-        $run->language=$request->input('leng');
+        $run->language=$leng;
         $run->sourcecode_id=$code->sourcecode_id;
         $run->save();
         return redirect('status/status');
