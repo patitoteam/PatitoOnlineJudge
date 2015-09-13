@@ -35,13 +35,14 @@ class SubmitController extends Controller
         $status->source_code=$request->input('editor');
         $status->save();
         
-
+        $status=Status::orderby('solution_id','desc')->first();
         $compile=new Compileinfo;
-        $compile->solution_id=$id;
+        $compile->solution_id=$status->solution_id;
         $compile->save();
+
         
         $run=new Run;
-        $run->solution_id=$id;
+        $run->solution_id=$status->solution_id;
         $run->problem_id=$id;
         $run->save();
         return redirect('status/status');
