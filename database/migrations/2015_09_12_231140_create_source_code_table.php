@@ -13,8 +13,8 @@ class CreateSourceCodeTable extends Migration
     public function up()
     {
         Schema::create('source_code', function (Blueprint $table) {
+            $table->increments('sourcecode_id');
             $table->integer('solution_id');
-            $table->integer('sourcecode_id')->nullable();
             $table->string('source')->nullable();
             $table->timestamps();
         });

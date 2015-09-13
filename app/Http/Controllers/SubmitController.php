@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Compileinfo;
 use App\Status;
 use App\Run;
+use App\Source_code;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -32,19 +33,25 @@ class SubmitController extends Controller
         $status->time='100';
         $status->memory='100';
         $status->language=$request->input('leng');
-        $status->source_code=$request->input('editor');
+        //$status->source_code=
         $status->save();
         
         $status=Status::orderby('solution_id','desc')->first();
         $compile=new Compileinfo;
         $compile->solution_id=$status->solution_id;
         $compile->save();
+        $code=new Source_code;
+        $code->solution_id=$status->solution_id;
+        $code->source=$request->input('editor');
+        $code->save();
 
-        
+        $code=Source_code::orderby('sourcecode_id','desc')->first();
+
         $run=new Run;
         $run->solution_id=$status->solution_id;
         $run->problem_id=$id;
         $run->language=$request->input('leng');
+        $run->sourcecode_id=$code->sourcecode_id;
         $run->save();
         return redirect('status/status');
     }
