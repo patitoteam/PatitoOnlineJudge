@@ -15,7 +15,6 @@ class CreateCompileinfo extends Migration
         Schema::create('compileinfo', function (Blueprint $table) {
             $table->integer("solution_id")->nullable();
             $table->string('error')->nullable();
-            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
