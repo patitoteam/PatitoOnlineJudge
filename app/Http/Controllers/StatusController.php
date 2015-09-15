@@ -21,9 +21,13 @@ class StatusController extends Controller
 
         $status=Status::where('solution_id',$id_sol)->first();
         $resp=$status->result;
-        if ($resp) {
+        while ($resp) {
+            # code...
+          //  if () {
             return response()->json(array('msg' =>$resp));
+        //}
         }
+        
         
         
 

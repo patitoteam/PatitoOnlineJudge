@@ -79,28 +79,25 @@
        </table>
  </body>
  <script type="text/javascript" src="{!! asset('js/jquery-2.1.1.min.js') !!}"></script>
- <script type="text/javascript">
-       (function() {
-        var date = document.getElementById("id_sol").innerHTML;
-       // alert(date);
-          $.ajax({
-
-                url: '/status/status',
-                type: 'POST',
-                data: {id_sol: date},
-               
-                beforeSend: function() {
-                   $("#responce").html('Esperando respuesta...');
-                },
-                error: function() {
-                   $("#responce").html('<div> Ha surgido un error. </div>');
-                },
-                success: function(respuesta) {
-
-                   //respuesta
-                   $("#responce").html(respuesta.msg);
-                }
-             });
-       }).call(this);
-    </script>
+<script>
+function update_run(){ 
+var date = "{{ $item->solution_id }}"; 
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'); 
+$.ajaxSetup({
+ headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') } });
+ $.ajax({ url: '/status/status', 
+  type: 'POST', 
+  data: {id_sol: date}, 
+  beforeSend: function() { 
+    $("#responce").html('Esperando respuesta...'); 
+  },
+   error: function() {
+    $("#responce").html('<div> Ha surgido un error. </div>'); 
+  },
+   success: function(respuesta) { 
+    $("#responce").html(respuesta.msg); 
+   } }); 
+ setTimeout("update_run()",3000); 
+}
+  update_run(); </script>
 </html>
