@@ -29,7 +29,6 @@
 
 </select>
 </div>
-    @if($status->count())
        <table style="border: solid 1px #000;">
           <thead>
           <tr>
@@ -46,9 +45,8 @@
           </tr>
           </thead>
           <tbody>
-          @foreach($status as $item)
              <tr>
-                <td style="text-align: center;"> {{ $item->solution_id }} </td>
+                <td id="id_sol" style="text-align: center;"> {{ $item->solution_id }} </td>
                 <td style="text-align: center;"> {{ $item->user_id }} </td>
                 <td style="text-align: center;"> {{ $item->problem_id }} </td>
                 <td style="text-aling: center;"> <div id="responce"></div></td>
@@ -76,23 +74,23 @@
                 <td style="text-aling: center;"> {{ $item->in_date}}</td>
                 
              </tr>
-          @endforeach
+
           </tbody>
        </table>
-    @else
-       <p> No se han encontrado usuarios </p>
-    @endif
  </body>
  <script type="text/javascript" src="{!! asset('js/jquery-2.1.1.min.js') !!}"></script>
  <script type="text/javascript">
        (function() {
+        var date = document.getElementById("id_sol").innerHTML;
+       // alert(date);
           $.ajax({
 
                 url: '/status/status',
                 type: 'POST',
+                data: {id_sol: date},
                
                 beforeSend: function() {
-                   $("#responce").html('Buscando empleado...');
+                   $("#responce").html('Esperando respuesta...');
                 },
                 error: function() {
                    $("#responce").html('<div> Ha surgido un error. </div>');
@@ -100,6 +98,7 @@
                 success: function(respuesta) {
 
                    //respuesta
+                   $("#responce").html(respuesta.msg);
                 }
              });
        }).call(this);

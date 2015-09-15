@@ -6,16 +6,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Status;
+
 class StatusController extends Controller
 {
     public function index()
     {
-      $status=Status::all();
-      return view('status.status')->with('status',$status);
+      $status=Status::orderBy('solution_id','desc')->first();
+      return view('status.status')->with('item',$status);
     }
     public function postindex(Request $request)
     {
-        //responder XF  
+        //responder XF
+        $id_sol=$request->input('id_sol');
+
+        $status=Status::where('solution_id',$id_sol)->first();
+        $resp=$status->result;
+        if ($resp) {
+            return response()->json(array('msg' =>$resp));
+        }
+        
+        
+
     }
     public function create()
     {
