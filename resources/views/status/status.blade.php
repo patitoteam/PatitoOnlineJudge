@@ -41,15 +41,21 @@
              <th style="width: 15%; border-bottom: solid 1px #000;"> Language</th>
              <th style="width: 15%; border-bottom: solid 1px #000;"> Code Length</th>
              <th style="width: 15%; border-bottom: solid 1px #000;"> Submit Time</th>
-      
           </tr>
           </thead>
           <tbody>
+          <?php 
+            $vector = "";
+          ?>
+            @foreach($status as $item)
+            <?php 
+            $vector .=$item->solution_id.';';
+          ?> 
              <tr>
                 <td id="id_sol" style="text-align: center;"> {{ $item->solution_id }} </td>
                 <td style="text-align: center;"> {{ $item->user_id }} </td>
                 <td style="text-align: center;"> {{ $item->problem_id }} </td>
-                <td style="text-aling: center;"> <div id="responce"></div></td>
+                <td style="text-aling: center;"> <div id="responce{{ $item->solution_id }}"></div></td>
                 <td style="text-aling: center;"> {{ $item->memory}}</td>
                 <td style="text-aling: center;"> {{ $item->time}}</td>
                 <td style="text-aling: center;"> 
@@ -74,30 +80,39 @@
                 <td style="text-aling: center;"> {{ $item->in_date}}</td>
                 
              </tr>
-
+             @endforeach
           </tbody>
        </table>
  </body>
  <script type="text/javascript" src="{!! asset('js/jquery-2.1.1.min.js') !!}"></script>
 <script>
-function update_run(){ 
-var date = "{{ $item->solution_id }}"; 
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'); 
-$.ajaxSetup({
- headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') } });
- $.ajax({ url: '/status/status', 
-  type: 'POST', 
-  data: {id_sol: date}, 
-  beforeSend: function() { 
-    $("#responce").html('Esperando respuesta...'); 
-  },
-   error: function() {
-    $("#responce").html('<div> Ha surgido un error. </div>'); 
-  },
-   success: function(respuesta) { 
-    $("#responce").html(respuesta.msg); 
-   } }); 
- setTimeout("update_run()",3000); 
-}
-  update_run(); </script>
+    var tmp = "{{$vector}}";
+    var vector=tmp.split(';');
+    var lim   = vector.length;
+    
+  function update_run(id){   
+     var id_=-1;
+     $.ajax({ url: '/status/status', 
+      type: 'POST', 
+      data: {id_sol: id}, 
+      beforeSend: function() { 
+        $("#responce"+id).html('Esperando respuesta...'); 
+      },
+       error: function() {
+        $("#responce").html('<div> Ha surgido un error. </div>'); 
+      },
+       success: function(respuesta) { 
+        $("#responce"+id).html(respuesta.msg); 
+          id_= respuesta.msg;
+          console.log(respuesta.msg);
+       } 
+     });
+         setTimeout("update_run("+id+")",10000);
+        }
+
+     for (var i = 0; i < lim; i++) {
+       update_run(vector[i]);
+     }
+       
+</script>
 </html>

@@ -11,8 +11,9 @@ class StatusController extends Controller
 {
     public function index()
     {
-      $status=Status::orderBy('solution_id','desc')->first();
-      return view('status.status')->with('item',$status);
+      //$status=Status::orderBy('solution_id','desc')->first();
+      $status=Status::all();  
+      return view('status.status')->with('status',$status);
     }
     public function postindex(Request $request)
     {
@@ -21,7 +22,7 @@ class StatusController extends Controller
 
         $status=Status::where('solution_id',$id_sol)->first();
         $resp=$status->result;
-        while ($resp) {
+        if ($resp) {
             # code...
           //  if () {
             return response()->json(array('msg' =>$resp));
