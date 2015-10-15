@@ -91,9 +91,9 @@
     var tmp = "{{$vector}}";
     var tmpm = "{{$msgs}}";
 
-    var vector=tmp.split(';');
-    var vector2=tmpm.split(';');
-    var lim   = vector.length;
+    var vector  = tmp.split(';');
+    var vector2 = tmpm.split(';');
+    var lim     = vector.length;
     
   function update_run(id){
 

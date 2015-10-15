@@ -45,7 +45,7 @@
       <textarea name="editor" cols="50" rows="10" id="editor">
       </textarea>
       <div id="submit">
-        <input type="submit" value="enviar">
+         <input type="submit" value="enviar">
       </div>
     </form>
   </div>
@@ -55,6 +55,11 @@
     var editor = ace.edit("");
     editor.setTheme("ace/theme/twilight");
     editor.getSession().setMode("ace/mode/c_cpp");
+  </script>
+  <script type="text/javascript">
+      $.ajax(url: '/submit'
+
+        );
   </script>
 </body>
 </html>
