@@ -9,7 +9,7 @@
         "laravel/framework": "5.1.*",
 	   
 	    "laravelcollective/html": "5.1.*",
-        "zizaco/entrust": "dev-laravel-5"
+        "zizaco/entrust": "5.2.x-dev"
 
     },
     "require-dev": {
